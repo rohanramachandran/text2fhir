@@ -1,6 +1,11 @@
 import argparse
 import json
 from pathlib import Path
+import sys
+
+# Ensure the project root is on the module search path so that ``settings`` and
+# other local modules can be imported when the script is executed directly.
+sys.path.append(str(Path(__file__).resolve().parent.parent))
 
 from settings import load_env
 
