@@ -30,3 +30,26 @@ This project is based on Flask API and used flask-api-spec for automatically gen
 Before running FHIR Adapter ensure that BIOMED is started.
 To run FHIR Adapter for dev you need to execute `python fhirhydrant.fhir_server` with environmental variable FLASK_ENV. There are 2 values in which FLASK_ENV can be set: 'development' and 'test'.
 For now FHIR Adapter is not ready for production.
+
+## Google Colab Usage
+
+The script `scripts/clinical_notes_to_bundle.py` can be used in Google Colab to
+convert clinician notes to a FHIR bundle.
+
+Clone the repository, install the requirements and run the script:
+
+```python
+!git clone <repository-url>
+%cd text2fhir
+!pip install -r requirements.txt -r fhirhydrant/client-requirements.txt
+
+import os
+os.environ['MDL_FHIR_API_BASE'] = 'http://localhost:5000'  # update if needed
+os.environ['MDL_FHIR_TENANT_ID'] = '<your-tenant-id>'
+
+!python scripts/clinical_notes_to_bundle.py -o bundle_output.txt
+```
+
+When executed in Colab the script will prompt you to upload a `.txt` file with
+the clinician notes and will save the resulting FHIR bundle to
+`bundle_output.txt`.
