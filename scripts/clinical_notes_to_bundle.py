@@ -2,6 +2,10 @@ import argparse
 import json
 from pathlib import Path
 
+from settings import load_env
+
+load_env()
+
 try:
     from google.colab import files
 except ImportError:  # not running in Colab
